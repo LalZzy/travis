@@ -1,4 +1,4 @@
-baseurl = "/"
+baseurl = "https://lalzzy.github.io/travis"
 publishDir = "docs"
 languageCode = "en-us"
 title = "镜中人的个人博客"

@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>镜中人的个人博客</title>
-    <link>/</link>
+    <link>/travis/</link>
     <description>Recent content on 镜中人的个人博客</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Mon, 23 Jul 2018 00:00:00 +0000</lastBuildDate>
     
-	<atom:link href="/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="/travis/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>R模型部署实战</title>
-      <link>/2018/07/23/r-model-deployment/</link>
+      <link>/travis/2018/07/23/r-model-deployment/</link>
       <pubDate>Mon, 23 Jul 2018 00:00:00 +0000</pubDate>
       
-      <guid>/2018/07/23/r-model-deployment/</guid>
+      <guid>/travis/2018/07/23/r-model-deployment/</guid>
       <description>引言如果此时你对何谓模型部署仍然一无所知的话，不必有任何焦虑的心情，引导你入门正是本文的目标所在。请相信我，这篇介绍是十分新手友好的，怀着好奇心和耐心读下去，你也会对模型部署建立起清晰的认识。
 模型部署是商业情景中的统计建模的极其重要的一部分，然而却往往被人忽视。读完本文，你将了解模型部署的基本概念与用途，并且按照教程学会如何在R环境中使用网络服务(web service)这种形式来部署上线一个模型，更多地，你的方法武器库中将会增添几柄利器: opencpu、fiery及plumbeR。话不多说，Let’s start!
 平台介绍操作系统:Windows10 R版本信息如下：
@@ -27,10 +27,10 @@ version## _ ## platform x86_64-w64-mingw32 ## arch x86_64 ## os mingw32 ## syst
     
     <item>
       <title>About</title>
-      <link>/about/</link>
+      <link>/travis/about/</link>
       <pubDate>Thu, 05 May 2016 21:48:51 -0700</pubDate>
       
-      <guid>/about/</guid>
+      <guid>/travis/about/</guid>
       <description>欢迎来到我的个人博客。我是周震宇，中国人民大学统计学研究生在读，兴趣方向为机器学习与文本挖掘。喜好用R与Python，没事也瞎倒腾些其他工具。现在在成为一名出色的数据科学从业者的路上孜孜以求。
 Finally, learn by doing.</description>
     </item>

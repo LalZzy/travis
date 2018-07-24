@@ -3,46 +3,46 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
-    <loc>/2018/07/23/r-model-deployment/</loc>
+    <loc>/travis/2018/07/23/r-model-deployment/</loc>
     <lastmod>2018-07-23T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>/about/</loc>
+    <loc>/travis/about/</loc>
     <lastmod>2016-05-05T21:48:51-07:00</lastmod>
   </url>
   
   <url>
-    <loc>/categories/</loc>
+    <loc>/travis/categories/</loc>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>/tags/model-deployment/</loc>
+    <loc>/travis/tags/model-deployment/</loc>
     <lastmod>2018-07-23T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>/post/</loc>
+    <loc>/travis/post/</loc>
     <lastmod>2018-07-23T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>/categories/r/</loc>
+    <loc>/travis/categories/r/</loc>
     <lastmod>2018-07-23T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>/tags/</loc>
+    <loc>/travis/tags/</loc>
     <lastmod>2018-07-23T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>/</loc>
+    <loc>/travis/</loc>
     <lastmod>2018-07-23T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
