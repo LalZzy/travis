@@ -1,7 +1,7 @@
 baseurl = "/"
 publishDir = "docs"
 languageCode = "en-us"
-title = "A Hugo website"
+title = "镜中人的个人博客"
 theme = "hugo-lithium"
 googleAnalytics = ""
 disqusShortname = ""
