@@ -57,7 +57,7 @@
 
   <article class="article">
     
-    <span class="article-duration">5 min read</span>
+    <span class="article-duration">4 min read</span>
     
 
     <h1 class="article-title">R模型部署实战</h1>
@@ -69,68 +69,44 @@
     <div class="article-content">
       <div class="section level2">
 <h2>引言</h2>
-<p>如果此时你对何谓模型部署仍然一无所知的话，不必有任何焦虑的心情，引导你入门并建立模型部署的清晰认识正是本文的目标所在。请相信我，这篇介绍是十分新手友好的。</p>
+<p>如果此时你对何谓模型部署仍然一无所知的话，不必有任何焦虑的心情，带你入门正是本文的目标所在。请相信我，这篇介绍将会是十分新手友好的，怀着好奇心和耐心读下去，你也会对模型部署建立起清晰的认识。</p>
 <p>模型部署是商业情景中的统计建模的极其重要的一部分，然而却往往被人忽视。读完本文，你将了解模型部署的基本概念与用途，并且按照教程学会如何在R环境中使用网络服务(web service)这种形式来部署上线一个模型，更多地，你的方法武器库中将会增添几柄利器: opencpu、fiery及plumbeR。话不多说，Let’s start!</p>
-</div>
-<div class="section level2">
-<h2>平台介绍</h2>
-<p>操作系统:Windows10 R版本信息如下：</p>
-<pre class="r"><code>version</code></pre>
-<pre><code>##                _                           
-## platform       x86_64-w64-mingw32          
-## arch           x86_64                      
-## os             mingw32                     
-## system         x86_64, mingw32             
-## status                                     
-## major          3                           
-## minor          5.0                         
-## year           2018                        
-## month          04                          
-## day            23                          
-## svn rev        74626                       
-## language       R                           
-## version.string R version 3.5.0 (2018-04-23)
-## nickname       Joy in Playing</code></pre>
-<pre class="r"><code>knitr::opts_chunk$set(eval = FALSE)</code></pre>
 </div>
 <div class="section level2">
 <h2>引入模型部署</h2>
 <div class="section level3">
 <h3>什么是模型部署？</h3>
-<p>一句话概括，<a href="https://docs.microsoft.com/en-us/azure/machine-learning/team-data-science-process/lifecycle-deployment">模型部署</a>是将一个调试好的模型运转在生产或者类生产环境中的操作。我们先来看下面这幅数据科学项目开发流程图。</p>
-<p><img src="http://chuantu.biz/t6/319/1527346823x-1404775605.png",height = "1000px", width = "800px"></p>
+<p>一句话概括，<a href="https://docs.microsoft.com/en-us/azure/machine-learning/team-data-science-process/lifecycle-deployment">模型部署</a>是将一个调试好的模型应用置于生产或者类生产环境中，其意义在于处理预测新数据，为公司提供数据决策或者对接其他需求部门提供模型支持。我们先来看下面这幅数据科学项目开发流程图。</p>
+<p><img src="/images/model-deployment/datascience-lifecycle2.png",height = "1000px", width = "800px"></p>
 <p>位于图片左边区域中的紫色圆圈中的文字，相信对大部分读者都不陌生。我们在学校中习得了很多关于数据科学模型、特征选择技巧及模型评价方法的知识，回想一下，在你过去大多数课程作业或是打比赛的经历中，完成了模型评价也就意味着项目宣告结束。然而在商业应用中，模型部署才标志着一个项目开发的阶段性结束。它的价值体现在两点：</p>
 <ul>
-<li>赋予数据科学模型处理实时<strong>流数据</strong>的能力。</li>
+<li>赋予数据科学模型处理新数据的能力（可以是实时的流数据，或者是积累的批数据）。</li>
 <li>在实际应用场景中完成模型效果与性能的反馈，为模型调整提供依据，实现建模开发流程的闭环。</li>
 </ul>
 </div>
 <div id="1" class="section level3">
-<h3>模型部署的手段<a href="https://docs.microsoft.com/en-us/azure/machine-learning/team-data-science-process/lifecycle-deployment">1</a>：</h3>
-<p>这里我引述了一些常用的模型部署的手段，接下来我们将会介绍用网络服务这种形式来搭建一个线上的模型。</p>
-<ul>
-<li>在线网站</li>
-<li>电子表格程序</li>
-<li>仪表盘</li>
-<li>业务线应用程序(Line-of-business applications)<a href="https://en.wikipedia.org/wiki/Line_of_business">2</a></li>
-<li>移动终端</li>
-<li>云</li>
-<li>……</li>
-</ul>
+<h3>模型部署的手段<a href="https://cran.r-project.org/web/views/ModelDeployment.html">1</a>：</h3>
+<p>这里我引述了一些常用的模型部署的手段，接下来我们将会介绍借助R中的网络服务这种形式来搭建一个线上的模型。</p>
+<div id="artifact" class="section level4">
+<h4>各种类型的工件(artifact)</h4>
+<p>这类工件能够将训练好的模型装入一些设备或者终端中，通常在编程语言的均有调用接口。PMML(Predictive Model Markup Language)是其中最常用的一种，它适合应用在实时、大规模数据量的场景。而在深度学习方面，TensorFlow框架提供了模型部署的功能。除此之外还有一些其他的工具，相应的在R中也基本有接口包。</p>
 </div>
-<div class="section level3">
-<h3>闲话流数据：</h3>
-<p>前文说到模型部署的一大价值便在于它赋予了数据科学模型处理流数据的能力。而在我看来，对于流式数据的陌生也是大部分同学在校期间对模型部署接触不多的一大原因，或者与数据采集环节的遥远导致我们把大部分的精力都投入在如何用模型把面前样本数据中的模式挖掘出来。在这种场景下，数据是固定的，被存放在.csv或者各式各样的文件中。</p>
-<p>让我们的思路再向前推移一步，用以存放数据的各种数据库或者数据文件是像蓄水池一样逐渐蓄满了被传递进来的数据，而这些数据均是经过一定的技术手段实时采集而来。那么，对于新的观测，一个部署在生产环境中的模型便可以实时地处理预测这些数据：比如互联网金融公司便可根据一个新申请的用户提供的个人信息来预测这名用户的信用评分，垃圾过滤系统也可以获取实时的邮件内容来判断这是否是垃圾邮件。</p>
-</div>
-<div class="section level3">
-<h3>网络服务做模型部署</h3>
+<div class="section level4">
+<h4>云/服务器</h4>
+<p>这种方式通过在服务器上开启一个服务的方式来部署模型，也是本文着力介绍的。主流的编程语言都有处理网络服务的功能，在python中可以用httpserver、flask、django等搭建网络框架来部署；而R语言做网络服务的包也不止一个，诸如plumber，fiery，opencpu……。“条条大路通罗马”，本文不会对编程语言的选择提供任何建议。</p>
+<p>既然是本文重点介绍的方式，不妨多啰嗦两句。</p>
 <p>用网络服务做模型部署，将划分出线上与线下两个环境。线下环境是单机环境，用以做一些探索性或者验证性的分析，包含了分析建模的每一个步骤：特征工程、模型选择、模型评价、参数调节……</p>
 <p>而线上环境则是生产环境，是把线下调整好参数的模型传至线上对新搜集的数据进行实时反馈。其背后的原理是借助get&amp;post方法把特征字段传递给web服务器，服务器将会用封装好的模型预测并返回参数数值。对get&amp;post不熟悉的可以参考<a href="http://www.w3school.com.cn/tags/html_ref_httpmethods.asp">这个教程</a>。</p>
 </div>
-<div id="web-service-in-r" class="section level3">
-<h3>web service in R</h3>
-<p>几个常用的R web service包：plumber，fiery，opencpu，httpuv</p>
+<div class="section level4">
+<h4>离线部署</h4>
+<p>这种方式相对来说就比较稀松平常了。问离线部署共分几步？答：共分三步。写好模型脚本xx.R或xx.python；把累计的新数据down下来；执行 Rscript xx.R &amp; python xx.python。完事儿~</p>
+</div>
+</div>
+<div class="section level3">
+<h3>闲话流数据：</h3>
+<p>前文说到模型部署的一大价值便在于它赋予了数据科学模型处理新数据的能力，而很多新数据通常是实时采集的流式数据。而在我看来，对于流式数据的陌生也是大部分同学在校期间对模型部署接触不多的一大原因，或者与数据采集环节的遥远导致我们把大部分的精力都投入在如何用模型把面前样本数据中的模式挖掘出来。在这种场景下，数据是固定的，被存放在.csv或者各式各样的文件中。</p>
+<p>让我们的思路再向前推移一步，用以存放数据的各种数据库或者数据文件是像蓄水池一样逐渐蓄满了被传递进来的数据，而这些数据均是经过一定的技术手段实时采集而来。那么，对于新的观测，一个部署在生产环境中的模型便可以实时地处理预测这些数据：比如互联网金融公司便可根据一个新申请的用户提供的个人信息来预测这名用户的信用评分，垃圾过滤系统也可以获取实时的邮件内容来判断这是否是垃圾邮件。</p>
 </div>
 </div>
 <div class="section level2">
@@ -176,7 +152,7 @@ save(glmmodel, file=&quot;../glm.rda&quot;)</code></pre>
 <li>连接该端口</li>
 </ol>
 <div id="step-1" class="section level4">
-<h4>step 1</h4>
+<h4>STEP 1</h4>
 <p>定义函数逻辑，即从数据库中提取数据并用xgboost或者logistic模型预测，编写函数<code>getdata</code>, <code>xgbpred</code>, <code>linearpred</code> 并把函数保存为PredData.r。</p>
 <pre class="r"><code>## getdata: 从数据库中提取垃圾邮件数据
 ## params: 
@@ -210,16 +186,16 @@ linearpred &lt;- function(id = 1){
 }</code></pre>
 </div>
 <div id="step-2" class="section level4">
-<h4>step 2</h4>
+<h4>STEP 2</h4>
 <p>创建R包SpamModelOpencpu并编辑文档，下图是编译好的R包的介绍。</p>
 <div class="figure">
-<img src="http://chuantu.biz/t6/318/1527077707x-1404755480.png" />
+<img src="/images/model-deployment/buildRpackage.png" />
 
 </div>
 <p>如果你对R包开发不熟悉，可以参考这个<a href="https://blog.csdn.net/iccsu/article/details/24237885">教程</a>或是谢益辉大大在统计之都上的<a href="https://cosx.org/2011/05/write-r-packages-like-a-ninja">旧文</a>。</p>
 </div>
 <div id="step-3" class="section level4">
-<h4>step 3</h4>
+<h4>STEP 3</h4>
 <p>在R console里运行单机版的opencpu服务器。</p>
 <pre class="r"><code>library(opencpu)
 ocpu_start_server()</code></pre>
