@@ -28,7 +28,7 @@ knitr::opts_chunk$set(eval = FALSE)
 
 一句话概括，[模型部署](https://docs.microsoft.com/en-us/azure/machine-learning/team-data-science-process/lifecycle-deployment)是将一个调试好的模型应用置于生产或者类生产环境中，其意义在于处理预测新数据，为公司提供数据决策或者对接其他需求部门提供模型支持。我们先来看下面这幅数据科学项目开发流程图。
 
-<img src="/images/model-deployment/datascience-lifecycle2.png",height = "1000px", width = "800px">
+<img src="/travis/images/model-deployment/datascience-lifecycle2.png",height = "1000px", width = "800px">
 
 位于图片左边区域中的紫色圆圈中的文字，相信对大部分读者都不陌生。我们在学校中习得了很多关于数据科学模型、特征选择技巧及模型评价方法的知识，回想一下，在你过去大多数课程作业或是打比赛的经历中，完成了模型评价也就意味着项目宣告结束。然而在商业应用中，模型部署才标志着一个项目开发的阶段性结束。它的价值体现在两点：
 
@@ -168,7 +168,7 @@ linearpred <- function(id = 1){
 
 创建R包SpamModelOpencpu并编辑文档，下图是编译好的R包的介绍。
 
-![](/images/model-deployment/buildRpackage.png)
+![](/travis/images/model-deployment/buildRpackage.png)
 
 如果你对R包开发不熟悉，可以参考这个[教程](https://blog.csdn.net/iccsu/article/details/24237885)或是谢益辉大大在统计之都上的[旧文](https://cosx.org/2011/05/write-r-packages-like-a-ninja)。
 
